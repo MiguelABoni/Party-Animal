@@ -1,4 +1,126 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.titlePrincipal {
+    margin: 1rem 0 1rem 0;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.descriptionGeneral {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.container, .medicinesGeneralContainer {
+    margin: 2rem;
+}
+
+.reportGeneral, .titleClients {
+    margin-bottom: 1rem;
+}
+
+.btn-reportGeneral {
+    width: 10rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    border-width: 0;
+    border-radius: 8px;
+    color: #ffffff;
+	background-color: #461ef7;
+    font-size: 1rem;
+    text-decoration:none;
+    cursor: pointer;
+}
+
+.btn-reportGeneral:hover {
+	background-color: #7356f5;
+}
+
+.btn-reportGeneral:active {
+    position: relative;
+	top: 1px;
+}
+
+#createClient {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.form__group {
+    position: relative;
+    width: 15rem;
+    min-width: 200px;
+    margin-bottom: 1.5rem;
+    padding: 15px 0 0;
+}
+
+.form__field {
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    padding: 7px 0;
+    background: transparent;
+    color: #000000;
+    font-size: 1.3rem;
+    font-family: inherit;
+    transition: border-color 0.2s;
+    outline: 0;
+}
+
+.form__field::placeholder {
+    font-weight: normal;
+}
+
+.form__field:focus {
+    padding-bottom: 6px;  
+    font-weight: 600;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #11998e, #38ef7d);
+    border-image-slice: 1;
+}
+
+#btn_create_client {
+    display: block;
+    width: 10rem;
+    height: 3rem;
+    margin: auto;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
+    border-width: 0;
+    border-radius: 8px;
+    color: #ffffff;
+	background-color: #f81f84;
+    font-size: 1rem;
+    text-decoration:none;
+    cursor: pointer;
+}
+
+#btn_create_client:hover {
+    background-color: #f1559e;
+}
+
+#btn_create_client:active {
+    position: relative;
+	top: 1px;
+}
+
+#render_clients {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#render_clients section {
+    width: 25%;
+    height: 10rem;
 }

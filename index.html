@@ -6,43 +6,77 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <title>Party Animal!</title>
 </head>
 
 <body>
-    <h1>🐱🐔🐖 ¡PARTY ANIMAL! 🐱🐔🐖</h1>
-    <p>Centro veterinario ubicado en la ciudad de Cartagena</p>
+    <h1 class="titlePrincipal">🐱🐔🐖 ¡PARTY ANIMAL! 🐱🐔🐖</h1>
+    <p class="descriptionGeneral">Centro veterinario ubicado en la ciudad de Cartagena</p>
 
     <div class="container">
+        <section class="reports">
+            <h1 class="reportGeneral">📄 REPORTE GENERAL</h1>
+            <button class="btn-reportGeneral">Generar reporte</button>
+            <div id="resultReport"></div>
+        </section>
 
-        <section class="reports"></section>
-        <h1>👥 CLIENTES</h1>
         <section class="clients">
-            <div id="CreateClient">
-                <input type="text" id="Cedula" placeholder="Cedula" />
-                <input type="text" id="Nombres" placeholder="Nombres" />
-                <input type="text" id="Apellidos" placeholder="Apellidos" />
-                <input type="text" id="Direccion" placeholder="Dirección" />
-                <input type="text" id="Telefono" placeholder="Teléfono" />
-                <button id="btn_create_client">Crear</button>
+            <h1 class="titleClients">👥 CLIENTES</h1>
+            <div id="createClient">
+                <div class="form__group">
+                    <input type="text" class="form__field" placeholder="Cédula" name="Cedula" id='Cedula' required />
+                </div>
+                <div class="form__group">
+                    <input type="text" class="form__field" placeholder="Nombres" name="Nombres" id='Nombres' required />
+                </div>
+                <div class="form__group">
+                    <input type="text" class="form__field" placeholder="Apellidos" name="Apellidos" id='Apellidos' required />
+                </div>
+                <div class="form__group">
+                    <input type="text" class="form__field" placeholder="Dirección" name="Direccion" id='Direccion' required />
+                </div>
+                <div class="form__group">
+                    <input type="text" class="form__field" placeholder="Teléfono" name="Telefono" id='Telefono' required />
+                </div>
             </div>
+
+            <button id="btn_create_client">💾 Crear</button>
+
             <div id="render_clients"></div>
             <div id="update_form_customer"></div>
         </section>
-        <h1>🐾 MASCOTAS</h1>
+
         <section class="pets">
+            <h1>🐾 MASCOTAS</h1>
             <div class="CreatePet"></div>
             <div id="render_pets"></div>
             <div id="update_form_pet"></div>
         </section>
-        <h1>💊 MEDICAMENTOS</h1>
+
         <section class="medicines">
-            <button>Crear</button>
+            <h1>💊 MEDICAMENTOS ASIGNADOS</h1>
             <div id="render_medicines"></div>
         </section>
     </div>
+    <section id="ReportClient" ></section>
+    <hr>
+    <div class="medicinesGeneralContainer">
+        <h1>LISTA DE MEDICAMENTOS EN GENERAL</h1>
+        <div id="CreateMedicine">
+            <input type="text" id="Id" placeholder="Id" />
+            <input type="text" id="Nombre" placeholder="Nombre" />
+            <input type="text" id="Descripcion" placeholder="Descripción" />
+            <input type="text" id="Dosis" placeholder="Dosis" />
+            <button id="btn_create_medicineg">💾 Crear</button>
+        </div>
+        <section id="medicinesGeneral"></section>
+        <div id="update_form_medicine"></div>
+    </div>
 
-    <script type="text/javascript" src="./js/index.js"></script>
+    <script type="module" src="./js/index.js"></script>
 </body>
 
 </html>
