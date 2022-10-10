@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Party Animal!</title>
+</head>
+
+<body>
+    <h1>🐱🐔🐖 ¡PARTY ANIMAL! 🐱🐔🐖</h1>
+    <p>Centro veterinario ubicado en la ciudad de Cartagena</p>
+
+    <div class="container">
+
+        <section class="reports"></section>
+        <h1>👥 CLIENTES</h1>
+        <section class="clients">
+            <div id="CreateClient">
+                <input type="text" id="Cedula" placeholder="Cedula" />
+                <input type="text" id="Nombres" placeholder="Nombres" />
+                <input type="text" id="Apellidos" placeholder="Apellidos" />
+                <input type="text" id="Direccion" placeholder="Dirección" />
+                <input type="text" id="Telefono" placeholder="Teléfono" />
+                <button id="btn_create_client">Crear</button>
+            </div>
+            <div id="render_clients"></div>
+            <div id="update_form_customer"></div>
+        </section>
+        <h1>🐾 MASCOTAS</h1>
+        <section class="pets">
+            <div class="CreatePet"></div>
+            <div id="render_pets"></div>
+            <div id="update_form_pet"></div>
+        </section>
+        <h1>💊 MEDICAMENTOS</h1>
+        <section class="medicines">
+            <button>Crear</button>
+            <div id="render_medicines"></div>
+        </section>
+    </div>
+
+    <script type="text/javascript" src="./js/index.js"></script>
+</body>
+
+</html>
