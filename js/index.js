@@ -61,15 +61,15 @@ function GetMedicines(clase, idCheckbox) {
         })
 }
 
-function AddClass(elementHTML) {
+function AddClass(elementHTML, clase) {
     
     // Quitar
-    document.querySelectorAll('.Selected').forEach((element) => {
-        element.classList.remove('Selected');
+    document.querySelectorAll(`.${clase}`).forEach((element) => {
+        element.classList.remove(clase);
     })
 
     // Agregar el borde
-    elementHTML.classList.add('Selected');
+    elementHTML.classList.add(clase);
 
 }
 
@@ -185,7 +185,7 @@ function RenderPets(event) {
 /** RENDER PET OF CLIENT FROM TITLE */
 function RenderPetsTitle(event) {
     RenderPets(event);
-    AddClass(event.target);
+    AddClass(event.target.parentElement, "SelectedCustomer");
     Medicines.innerHTML = "";
     ReportContainer.innerHTML = "";
     ReportClient.innerHTML = "";
@@ -232,7 +232,7 @@ function RenderMedicines(event) {
 /** RENDER MEDICINES OF PET FROM TITLE */
 function RenderMedicinesTitle(event) {
     RenderMedicines(event);
-    AddClass(event.target);
+    AddClass(event.target.parentElement, "SelectedPet");
     ReportContainer.innerHTML = "";
     ReportClient.innerHTML = "";
     FormUpdateCustomer.innerHTML = "";

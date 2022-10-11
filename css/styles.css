@@ -463,3 +463,11 @@
 #ReportClient div table tr td ul {
     list-style-type: none;
 }
+
+.SelectedCustomer {
+    border: 4px solid #7356f5;
+}
+
+.SelectedPet {
+    border: 4px solid #19faa4;
+}
