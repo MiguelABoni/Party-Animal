@@ -61,6 +61,19 @@ function GetMedicines(clase, idCheckbox) {
         })
 }
 
+function AddClass(elementHTML) {
+    
+    // Quitar
+    document.querySelectorAll('.Selected').forEach((element) => {
+        element.classList.remove('Selected');
+    })
+
+    // Agregar el borde
+    elementHTML.classList.add('Selected');
+
+}
+
+
 /** RENDER CLIENTS */
 function RenderCustomers() {
     Clients.innerHTML = "";
@@ -172,6 +185,7 @@ function RenderPets(event) {
 /** RENDER PET OF CLIENT FROM TITLE */
 function RenderPetsTitle(event) {
     RenderPets(event);
+    AddClass(event.target);
     Medicines.innerHTML = "";
     ReportContainer.innerHTML = "";
     ReportClient.innerHTML = "";
@@ -218,6 +232,7 @@ function RenderMedicines(event) {
 /** RENDER MEDICINES OF PET FROM TITLE */
 function RenderMedicinesTitle(event) {
     RenderMedicines(event);
+    AddClass(event.target);
     ReportContainer.innerHTML = "";
     ReportClient.innerHTML = "";
     FormUpdateCustomer.innerHTML = "";
