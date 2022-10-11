@@ -23,7 +23,10 @@
     text-align: center;
 }
 
-.container,
+.container {
+    margin: 0 2rem 2rem 2rem;
+}
+
 .medicinesGeneralContainer {
     margin: 2rem;
 }
@@ -268,7 +271,7 @@
 }
 
 .btn_report_customer {
-    background-color: #1f52f8;
+    background-color: #461ef7;
 }
 
 .btn_actualizar_customer,
@@ -285,7 +288,7 @@
 }
 
 .btn_report_customer:hover {
-    background-color: #4770f8;
+    background-color: #7356f5;
 }
 
 .btn_actualizar_customer:hover,
@@ -363,4 +366,99 @@
 .titleUpdateMedicine {
     width: 100%;
     margin: 1rem 0 1rem 0;
+}
+
+/** GIF DE ANIMALITOS */
+#gato {
+    width: 150px;
+    height: 150px;
+}
+
+.animals {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.animals img {
+    width: 200px;
+    height: 100px;
+}
+
+/** REPORTES */
+#resultReport {
+    padding: 2rem;
+}
+
+#ReportClient {
+    padding: 0 2rem 2rem 2rem;
+}
+
+#resultReport div,
+#ReportClient div {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+#resultReport div h2,
+#ReportClient div h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+#resultReport div table,
+#ReportClient div table {
+    min-width: 500px;
+    border-radius: 30px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+    border-collapse: collapse;
+    font-size: 1rem;
+}
+
+.encabezados {
+    background-color: #461ef7;
+    color: #ffffff;
+    text-align: left;
+}
+
+#resultReport div table th,
+#resultReport div table td,
+#ReportClient div table th,
+#ReportClient div table td {
+    padding: 1rem 2rem;
+}
+
+#resultReport div table tr,
+#ReportClient div table tr {
+    border-bottom: 1px solid #dddddd;
+    cursor: pointer;
+}
+
+#resultReport div table tr:nth-of-type(even),
+#ReportClient div table tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+#resultReport div table tr:last-of-type,
+#ReportClient div table tr:last-of-type {
+    border: 0;
+}
+
+#resultReport div table tr:first-of-type:hover,
+#ReportClient div table tr:first-of-type:hover {
+    color: #ffffff;
+}
+
+#resultReport div table tr:hover,
+#ReportClient div table tr:hover {
+    color: #461ef7;
+}
+
+#resultReport div table tr td ul,
+#ReportClient div table tr td ul {
+    list-style-type: none;
 }

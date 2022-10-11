@@ -22,19 +22,6 @@ let FormUpdateCustomer = document.getElementById("update_form_customer");
 let FormUpdatePet = document.getElementById("update_form_pet");
 let FormUpdateMedicine = document.getElementById("update_form_medicine");
 
-/**
-Clients.innerHTML = "";
-PetsAll.innerHTML = "";
-Pets.innerHTML = "";
-Medicines.innerHTML = "";
-MedicinesGeneral.innerHTML = "";
-ReportContainer.innerHTML = "";
-ReportClient.innerHTML = "";
-FormUpdateCustomer.innerHTML = "";
-FormUpdatePet.innerHTML = "";
-FormUpdateMedicine.innerHTML = "";
-*/
-
 /** AÑADIR A CUALQUIER OBJETO SU RESPECTIVO EVENTLISTENER */
 function AddClickNames(clase, funcion) {
     let Names = document.querySelectorAll(clase);
@@ -103,7 +90,7 @@ function RenderCustomers() {
                         `
 
                     Clients.append(Element);
-                    AddClickNames('.CustomerClient', RenderPets);
+                    AddClickNames('.CustomerClient', RenderPetsTitle);
                     AddClickNames('.btn_actualizar_customer', UpdateCustomer);
                     AddClickNames('.btn_eliminar_customer', DeleteCustomer);
                     AddClickNames('.btn_report_customer', ReportIndividual);
@@ -174,12 +161,23 @@ function RenderPets(event) {
                         </section>
                         `
 
-                    AddClickNames('.Pet', RenderMedicines);
+                    AddClickNames('.Pet', RenderMedicinesTitle);
                     AddClickNames('.btn_eliminar_pet', DeletePet);
                     AddClickNames('.btn_actualizar_pet', UpdatePet);
                 })
             }
         })
+}
+
+/** RENDER PET OF CLIENT FROM TITLE */
+function RenderPetsTitle(event) {
+    RenderPets(event);
+    Medicines.innerHTML = "";
+    ReportContainer.innerHTML = "";
+    ReportClient.innerHTML = "";
+    FormUpdateCustomer.innerHTML = "";
+    FormUpdatePet.innerHTML = "";
+    FormUpdateMedicine.innerHTML = "";
 }
 
 /** RENDER MEDICINES OF PET */
@@ -217,6 +215,16 @@ function RenderMedicines(event) {
         })
 }
 
+/** RENDER MEDICINES OF PET FROM TITLE */
+function RenderMedicinesTitle(event) {
+    RenderMedicines(event);
+    ReportContainer.innerHTML = "";
+    ReportClient.innerHTML = "";
+    FormUpdateCustomer.innerHTML = "";
+    FormUpdatePet.innerHTML = "";
+    FormUpdateMedicine.innerHTML = "";
+}
+
 /** RENDER MEDICINES GENERAL */
 function RenderMedicinesGeneral() {
     MedicinesGeneral.innerHTML = "";
@@ -252,36 +260,52 @@ function RenderMedicinesGeneral() {
 
 /** CUSTOMERS */
 function CreateCustomer() {
-    let Values = {
-        Cedula: document.getElementById('Cedula').value,
-        Nombres: document.getElementById('Nombres').value,
-        Apellidos: document.getElementById('Apellidos').value,
-        Direccion: document.getElementById('Direccion').value,
-        Telefono: document.getElementById('Telefono').value,
-    }
+    let Cedula = document.getElementById('Cedula').value;
+    let Nombres = document.getElementById('Nombres').value;
+    let Apellidos = document.getElementById('Apellidos').value;
+    let Direccion = document.getElementById('Direccion').value;
+    let Telefono = document.getElementById('Telefono').value;
 
-    fetch(`https://partyanimal.vercel.app/new_customer`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(Values)
-    })
-        .then((res) => {
-            return res.json();
+    if ((Cedula == "") || (Nombres == "") || (Apellidos == "") || (Direccion == "") || (Telefono == "")) {
+        alert("Los campos no pueden quedar vacios");
+    } else {
+        let Values = {
+            Cedula: Cedula,
+            Nombres: Nombres,
+            Apellidos: Apellidos,
+            Direccion: Direccion,
+            Telefono: Telefono
+        }
+
+        fetch(`https://partyanimal.vercel.app/new_customer`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(Values)
         })
-        .then((data) => {
-            alert(data.message);
-            RenderCustomers();
-            PetsAll.innerHTML = "";
-            Pets.innerHTML = "";
-            Medicines.innerHTML = "";
-            ReportContainer.innerHTML = "";
-            ReportClient.innerHTML = "";
-            FormUpdateCustomer.innerHTML = "";
-            FormUpdatePet.innerHTML = "";
-            FormUpdateMedicine.innerHTML = "";
-        })
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                alert(data.message);
+                RenderCustomers();
+                PetsAll.innerHTML = "";
+                Pets.innerHTML = "";
+                Medicines.innerHTML = "";
+                ReportContainer.innerHTML = "";
+                ReportClient.innerHTML = "";
+                FormUpdateCustomer.innerHTML = "";
+                FormUpdatePet.innerHTML = "";
+                FormUpdateMedicine.innerHTML = "";
+
+                document.getElementById('Cedula').value = "";
+                document.getElementById('Nombres').value = "";
+                document.getElementById('Apellidos').value = "";
+                document.getElementById('Direccion').value = "";
+                document.getElementById('Telefono').value = "";
+            })
+    }
 }
 
 function UpdateCustomer(event) {
@@ -317,38 +341,60 @@ function UpdateCustomer(event) {
         <button id="${event.target.id}" class="btn_update_save">Actualizar</button>
     `
 
+    fetch(`https://partyanimal.vercel.app/customer/${event.target.id}`)
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            document.getElementById('UpdateCedula').value = data.result.Cedula;
+            document.getElementById('UpdateNombres').value = data.result.Nombres;
+            document.getElementById('UpdateApellidos').value = data.result.Apellidos;
+            document.getElementById('UpdateDireccion').value = data.result.Direccion;
+            document.getElementById('UpdateTelefono').value = data.result.Telefono;
+        })
+
     let BtnSaveUpdate = document.querySelector('.btn_update_save').addEventListener('click', (event) => {
 
+        let UpdateCedula = document.getElementById('UpdateCedula').value;
+        let UpdateNombres = document.getElementById('UpdateNombres').value;
+        let UpdateApellidos = document.getElementById('UpdateApellidos').value;
+        let UpdateDireccion = document.getElementById('UpdateDireccion').value;
+        let UpdateTelefono = document.getElementById('UpdateTelefono').value;
+
         let Values = {
-            Cedula: document.getElementById('UpdateCedula').value,
-            Nombres: document.getElementById('UpdateNombres').value,
-            Apellidos: document.getElementById('UpdateApellidos').value,
-            Direccion: document.getElementById('UpdateDireccion').value,
-            Telefono: document.getElementById('UpdateTelefono').value,
+            Cedula: UpdateCedula,
+            Nombres: UpdateNombres,
+            Apellidos: UpdateApellidos,
+            Direccion: UpdateDireccion,
+            Telefono: UpdateTelefono
         }
 
-        fetch(`https://partyanimal.vercel.app/customer/${event.target.id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(Values)
-        })
-            .then((res) => {
-                return res.json();
+        if ((UpdateCedula == "") || (UpdateNombres == "") || (UpdateApellidos == "") || (UpdateDireccion == "") || (UpdateTelefono == "")) {
+            alert("Los campos no pueden quedar vacios");
+        } else {
+            fetch(`https://partyanimal.vercel.app/customer/${event.target.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(Values)
             })
-            .then((data) => {
-                alert(data.message);
-                RenderCustomers();
-                PetsAll.innerHTML = "";
-                Pets.innerHTML = "";
-                Medicines.innerHTML = "";
-                ReportContainer.innerHTML = "";
-                ReportClient.innerHTML = "";
-                FormUpdateCustomer.innerHTML = "";
-                FormUpdatePet.innerHTML = "";
-                FormUpdateMedicine.innerHTML = "";
-            })
+                .then((res) => {
+                    return res.json();
+                })
+                .then((data) => {
+                    alert(data.message);
+                    RenderCustomers();
+                    PetsAll.innerHTML = "";
+                    Pets.innerHTML = "";
+                    Medicines.innerHTML = "";
+                    ReportContainer.innerHTML = "";
+                    ReportClient.innerHTML = "";
+                    FormUpdateCustomer.innerHTML = "";
+                    FormUpdatePet.innerHTML = "";
+                    FormUpdateMedicine.innerHTML = "";
+                })
+        }
     })
 }
 
@@ -385,36 +431,52 @@ function CreatePet(event) {
         }
     })
 
-    let Values = {
-        Id: document.getElementById('Id').value,
-        Nombre: document.getElementById('Nombre').value,
-        Raza: document.getElementById('Raza').value,
-        Edad: document.getElementById('Edad').value,
-        Peso: document.getElementById('Peso').value,
-        Medicamentos: Checked,
-        Id_Cliente: event.target.id
-    }
+    let Id = document.getElementById('Id').value;
+    let Nombre = document.getElementById('Nombre').value;
+    let Raza = document.getElementById('Raza').value;
+    let Edad = document.getElementById('Edad').value;
+    let Peso = document.getElementById('Peso').value;
 
-    fetch(`https://partyanimal.vercel.app/new_pet`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(Values)
-    })
-        .then((res) => {
-            return res.json();
+    if ((Id == "") || (Nombre == "") || (Raza == "") || (Edad == "") || (Peso == "")) {
+        alert("Los campos no pueden quedar vacios");
+    } else {
+        let Values = {
+            Id: Id,
+            Nombre: Nombre,
+            Raza: Raza,
+            Edad: Edad,
+            Peso: Peso,
+            Medicamentos: Checked,
+            Id_Cliente: event.target.id
+        }
+
+        fetch(`https://partyanimal.vercel.app/new_pet`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(Values)
         })
-        .then((data) => {
-            alert(data.message);
-            RenderPets(event);
-            Medicines.innerHTML = "";
-            ReportContainer.innerHTML = "";
-            ReportClient.innerHTML = "";
-            FormUpdateCustomer.innerHTML = "";
-            FormUpdatePet.innerHTML = "";
-            FormUpdateMedicine.innerHTML = "";
-        })
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                alert(data.message);
+                RenderPets(event);
+                Medicines.innerHTML = "";
+                ReportContainer.innerHTML = "";
+                ReportClient.innerHTML = "";
+                FormUpdateCustomer.innerHTML = "";
+                FormUpdatePet.innerHTML = "";
+                FormUpdateMedicine.innerHTML = "";
+
+                document.getElementById('Id').value = "";
+                document.getElementById('Nombre').value = "";
+                document.getElementById('Raza').value = "";
+                document.getElementById('Edad').value = "";
+                document.getElementById('Peso').value = "";
+            })
+    }
 }
 
 function UpdatePet(eventUpdate) {
@@ -449,6 +511,18 @@ function UpdatePet(eventUpdate) {
         <button id="${eventUpdate.target.getAttribute('data-pet')}" class="btn_update_save_pet">Actualizar</button>
     </div>`
 
+    fetch(`https://partyanimal.vercel.app/pet/${eventUpdate.target.getAttribute('data-pet')}`)
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            document.getElementById('UpdateId').value = data.result.Id;
+            document.getElementById('UpdateNombre').value = data.result.Nombre;
+            document.getElementById('UpdateRaza').value = data.result.Raza;
+            document.getElementById('UpdateEdad').value = data.result.Edad;
+            document.getElementById('UpdatePeso').value = data.result.Peso;
+        })
+
     GetMedicines('update_checkbox_medicines', 'Updatemedicine');
 
     let BtnSaveUpdate = document.querySelector('.btn_update_save_pet').addEventListener('click', (eventSave) => {
@@ -462,36 +536,46 @@ function UpdatePet(eventUpdate) {
             }
         })
 
-        let Values = {
-            Id: document.getElementById('UpdateId').value,
-            Nombre: document.getElementById('UpdateNombre').value,
-            Raza: document.getElementById('UpdateRaza').value,
-            Edad: document.getElementById('UpdateEdad').value,
-            Peso: document.getElementById('UpdatePeso').value,
-            Medicamentos: Checked,
-            Id_Cliente: eventUpdate.target.id
-        }
+        let UpdateId = document.getElementById('UpdateId').value;
+        let UpdateNombre = document.getElementById('UpdateNombre').value;
+        let UpdateRaza = document.getElementById('UpdateRaza').value;
+        let UpdateEdad = document.getElementById('UpdateEdad').value;
+        let UpdatePeso = document.getElementById('UpdatePeso').value;
 
-        fetch(`https://partyanimal.vercel.app/pet/${eventSave.target.id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(Values)
-        })
-            .then((res) => {
-                return res.json();
+        if ((UpdateId == "") || (UpdateNombre == "") || (UpdateRaza == "") || (UpdateEdad == "") || (UpdatePeso == "")) {
+            alert("Los campos no pueden quedar vacios");
+        } else {
+            let Values = {
+                Id: UpdateId,
+                Nombre: UpdateNombre,
+                Raza: UpdateRaza,
+                Edad: UpdateEdad,
+                Peso: UpdatePeso,
+                Medicamentos: Checked,
+                Id_Cliente: eventUpdate.target.id
+            }
+
+            fetch(`https://partyanimal.vercel.app/pet/${eventSave.target.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(Values)
             })
-            .then((data) => {
-                alert(data.message);
-                RenderPets(eventUpdate);
-                Medicines.innerHTML = "";
-                ReportContainer.innerHTML = "";
-                ReportClient.innerHTML = "";
-                FormUpdateCustomer.innerHTML = "";
-                FormUpdatePet.innerHTML = "";
-                FormUpdateMedicine.innerHTML = "";
-            })
+                .then((res) => {
+                    return res.json();
+                })
+                .then((data) => {
+                    alert(data.message);
+                    RenderPets(eventUpdate);
+                    Medicines.innerHTML = "";
+                    ReportContainer.innerHTML = "";
+                    ReportClient.innerHTML = "";
+                    FormUpdateCustomer.innerHTML = "";
+                    FormUpdatePet.innerHTML = "";
+                    FormUpdateMedicine.innerHTML = "";
+                })
+        }
     })
 }
 
@@ -516,35 +600,49 @@ function DeletePet(event) {
 
 /** MEDICINES - GENERAL */
 function CreateMedicine() {
-    let Values = {
-        Id: document.getElementById('IdMedicine').value,
-        Nombre: document.getElementById('NombreMedicine').value,
-        Descripcion: document.getElementById('DescripcionMedicine').value,
-        Dosis: document.getElementById('DosisMedicine').value,
-    }
+    let IdMedicine = document.getElementById('IdMedicine').value;
+    let NombreMedicine = document.getElementById('NombreMedicine').value;
+    let DescripcionMedicine = document.getElementById('DescripcionMedicine').value;
+    let DosisMedicine = document.getElementById('DosisMedicine').value;
 
-    fetch(`https://partyanimal.vercel.app/new_medicine`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(Values)
-    })
-        .then((res) => {
-            return res.json();
+    if ((IdMedicine == "") || (NombreMedicine == "") || (DescripcionMedicine == "") || (DosisMedicine == "")) {
+        alert("Los campos no pueden quedar vacios");
+    } else {
+        let Values = {
+            Id: IdMedicine,
+            Nombre: NombreMedicine,
+            Descripcion: DescripcionMedicine,
+            Dosis: DosisMedicine
+        }
+
+        fetch(`https://partyanimal.vercel.app/new_medicine`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(Values)
         })
-        .then((data) => {
-            alert(data.message);
-            RenderMedicinesGeneral();
-            PetsAll.innerHTML = "";
-            Pets.innerHTML = "";
-            Medicines.innerHTML = "";
-            ReportContainer.innerHTML = "";
-            ReportClient.innerHTML = "";
-            FormUpdateCustomer.innerHTML = "";
-            FormUpdatePet.innerHTML = "";
-            FormUpdateMedicine.innerHTML = "";
-        })
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                alert(data.message);
+                RenderMedicinesGeneral();
+                PetsAll.innerHTML = "";
+                Pets.innerHTML = "";
+                Medicines.innerHTML = "";
+                ReportContainer.innerHTML = "";
+                ReportClient.innerHTML = "";
+                FormUpdateCustomer.innerHTML = "";
+                FormUpdatePet.innerHTML = "";
+                FormUpdateMedicine.innerHTML = "";
+
+                document.getElementById('IdMedicine').value = "";
+                document.getElementById('NombreMedicine').value = "";
+                document.getElementById('DescripcionMedicine').value = "";
+                document.getElementById('DosisMedicine').value = "";
+            })
+    }
 }
 
 function UpdateMedicine(event) {
@@ -575,37 +673,57 @@ function UpdateMedicine(event) {
     </div>
     <button id="${event.target.id}" class="btn_update_save_medicine">GUARDAR</button>`;
 
+    fetch(`https://partyanimal.vercel.app/medicine/${event.target.id}`)
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            document.getElementById('UpdateIdMedicine').value = data.result.Id;
+            document.getElementById('UpdateNombreMedicine').value = data.result.Nombre;
+            document.getElementById('UpdateDescripcionMedicine').value = data.result.Descripcion;
+            document.getElementById('UpdateDosisMedicine').value = data.result.Dosis;
+        })
+
     let BtnSaveUpdate = document.querySelector('.btn_update_save_medicine').addEventListener('click', (eventSave) => {
 
-        let Values = {
-            Id: document.getElementById('UpdateIdMedicine').value,
-            Nombre: document.getElementById('UpdateNombreMedicine').value,
-            Descripcion: document.getElementById('UpdateDescripcionMedicine').value,
-            Dosis: document.getElementById('UpdateDosisMedicine').value
-        }
+        let UpdateIdMedicine = document.getElementById('UpdateIdMedicine').value;
+        let UpdateNombreMedicine = document.getElementById('UpdateNombreMedicine').value;
+        let UpdateDescripcionMedicine = document.getElementById('UpdateDescripcionMedicine').value;
+        let UpdateDosisMedicine = document.getElementById('UpdateDosisMedicine').value;
 
-        fetch(`https://partyanimal.vercel.app/medicine/${eventSave.target.id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(Values)
-        })
-            .then((res) => {
-                return res.json();
+        if ((UpdateIdMedicine == "") || (UpdateNombreMedicine == "") || (UpdateDescripcionMedicine == "") || (UpdateDosisMedicine == "")) {
+            alert("Los campos no pueden quedar vacios");
+        } else {
+            let Values = {
+                Id: UpdateIdMedicine,
+                Nombre: UpdateNombreMedicine,
+                Descripcion: UpdateDescripcionMedicine,
+                Dosis: UpdateDosisMedicine
+            }
+
+            fetch(`https://partyanimal.vercel.app/medicine/${eventSave.target.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(Values)
             })
-            .then((data) => {
-                alert(data.message);
-                RenderMedicinesGeneral();
-                PetsAll.innerHTML = "";
-                Pets.innerHTML = "";
-                Medicines.innerHTML = "";
-                ReportContainer.innerHTML = "";
-                ReportClient.innerHTML = "";
-                FormUpdateCustomer.innerHTML = "";
-                FormUpdatePet.innerHTML = "";
-                FormUpdateMedicine.innerHTML = "";
-            })
+                .then((res) => {
+                    return res.json();
+                })
+                .then((data) => {
+                    alert(data.message);
+                    RenderMedicinesGeneral();
+                    PetsAll.innerHTML = "";
+                    Pets.innerHTML = "";
+                    Medicines.innerHTML = "";
+                    ReportContainer.innerHTML = "";
+                    ReportClient.innerHTML = "";
+                    FormUpdateCustomer.innerHTML = "";
+                    FormUpdatePet.innerHTML = "";
+                    FormUpdateMedicine.innerHTML = "";
+                })
+        }
     })
 }
 
