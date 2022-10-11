@@ -267,7 +267,7 @@ function CreateCustomer() {
     let Telefono = document.getElementById('Telefono').value;
 
     if ((Cedula == "") || (Nombres == "") || (Apellidos == "") || (Direccion == "") || (Telefono == "")) {
-        alert("Los campos no pueden quedar vacios");
+        new AWN().warning("Los campos no pueden quedar vacios")
     } else {
         let Values = {
             Cedula: Cedula,
@@ -288,7 +288,7 @@ function CreateCustomer() {
                 return res.json();
             })
             .then((data) => {
-                alert(data.message);
+                new AWN().success(data.message, {durations: {success: 0}})
                 RenderCustomers();
                 PetsAll.innerHTML = "";
                 Pets.innerHTML = "";
@@ -370,7 +370,7 @@ function UpdateCustomer(event) {
         }
 
         if ((UpdateCedula == "") || (UpdateNombres == "") || (UpdateApellidos == "") || (UpdateDireccion == "") || (UpdateTelefono == "")) {
-            alert("Los campos no pueden quedar vacios");
+            new AWN().warning("Los campos no pueden quedar vacios")
         } else {
             fetch(`https://partyanimal.vercel.app/customer/${event.target.id}`, {
                 method: 'PUT',
@@ -383,7 +383,7 @@ function UpdateCustomer(event) {
                     return res.json();
                 })
                 .then((data) => {
-                    alert(data.message);
+                    new AWN().success(data.message, {durations: {success: 0}})
                     RenderCustomers();
                     PetsAll.innerHTML = "";
                     Pets.innerHTML = "";
@@ -406,7 +406,7 @@ function DeleteCustomer(event) {
             return res.json();
         })
         .then((data) => {
-            alert(data.message);
+            new AWN().success(data.message, {durations: {success: 0}})
             RenderCustomers();
             PetsAll.innerHTML = "";
             Pets.innerHTML = "";
@@ -438,7 +438,7 @@ function CreatePet(event) {
     let Peso = document.getElementById('Peso').value;
 
     if ((Id == "") || (Nombre == "") || (Raza == "") || (Edad == "") || (Peso == "")) {
-        alert("Los campos no pueden quedar vacios");
+        new AWN().warning("Los campos no pueden quedar vacios")
     } else {
         let Values = {
             Id: Id,
@@ -461,7 +461,7 @@ function CreatePet(event) {
                 return res.json();
             })
             .then((data) => {
-                alert(data.message);
+                new AWN().success(data.message, {durations: {success: 0}})
                 RenderPets(event);
                 Medicines.innerHTML = "";
                 ReportContainer.innerHTML = "";
@@ -543,7 +543,7 @@ function UpdatePet(eventUpdate) {
         let UpdatePeso = document.getElementById('UpdatePeso').value;
 
         if ((UpdateId == "") || (UpdateNombre == "") || (UpdateRaza == "") || (UpdateEdad == "") || (UpdatePeso == "")) {
-            alert("Los campos no pueden quedar vacios");
+            new AWN().warning("Los campos no pueden quedar vacios")
         } else {
             let Values = {
                 Id: UpdateId,
@@ -566,7 +566,7 @@ function UpdatePet(eventUpdate) {
                     return res.json();
                 })
                 .then((data) => {
-                    alert(data.message);
+                    new AWN().success(data.message, {durations: {success: 0}})
                     RenderPets(eventUpdate);
                     Medicines.innerHTML = "";
                     ReportContainer.innerHTML = "";
@@ -587,7 +587,7 @@ function DeletePet(event) {
             return res.json();
         })
         .then((data) => {
-            alert(data.message);
+            new AWN().success(data.message, {durations: {success: 0}})
             RenderPets(event);
             Medicines.innerHTML = "";
             ReportContainer.innerHTML = "";
@@ -606,7 +606,7 @@ function CreateMedicine() {
     let DosisMedicine = document.getElementById('DosisMedicine').value;
 
     if ((IdMedicine == "") || (NombreMedicine == "") || (DescripcionMedicine == "") || (DosisMedicine == "")) {
-        alert("Los campos no pueden quedar vacios");
+        new AWN().warning("Los campos no pueden quedar vacios")
     } else {
         let Values = {
             Id: IdMedicine,
@@ -626,7 +626,7 @@ function CreateMedicine() {
                 return res.json();
             })
             .then((data) => {
-                alert(data.message);
+                new AWN().success(data.message, {durations: {success: 0}})
                 RenderMedicinesGeneral();
                 PetsAll.innerHTML = "";
                 Pets.innerHTML = "";
@@ -692,7 +692,7 @@ function UpdateMedicine(event) {
         let UpdateDosisMedicine = document.getElementById('UpdateDosisMedicine').value;
 
         if ((UpdateIdMedicine == "") || (UpdateNombreMedicine == "") || (UpdateDescripcionMedicine == "") || (UpdateDosisMedicine == "")) {
-            alert("Los campos no pueden quedar vacios");
+            new AWN().warning("Los campos no pueden quedar vacios")
         } else {
             let Values = {
                 Id: UpdateIdMedicine,
@@ -712,7 +712,7 @@ function UpdateMedicine(event) {
                     return res.json();
                 })
                 .then((data) => {
-                    alert(data.message);
+                    new AWN().success(data.message, {durations: {success: 0}})
                     RenderMedicinesGeneral();
                     PetsAll.innerHTML = "";
                     Pets.innerHTML = "";
@@ -735,7 +735,7 @@ function DeleteMedicine(event) {
             return res.json();
         })
         .then((data) => {
-            alert(data.message);
+            new AWN().success(data.message, {durations: {success: 0}})
             RenderMedicinesGeneral();
             PetsAll.innerHTML = "";
             Pets.innerHTML = "";
@@ -757,7 +757,7 @@ function DeleteMedicinePet(event) {
             return res.json();
         })
         .then((data) => {
-            alert(data.message);
+            new AWN().success(data.message, {durations: {success: 0}})
             RenderMedicines(event);
             ReportContainer.innerHTML = "";
             ReportClient.innerHTML = "";
