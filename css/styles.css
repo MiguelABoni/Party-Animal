@@ -1,7 +1,14 @@
+/** ESTILOS GENERALES */
 * {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
+}
+
+.noCustomers,
+.noPets,
+.noMedicines {
+    margin: 1rem 0 1rem 0;
 }
 
 .titlePrincipal {
@@ -11,42 +18,81 @@
 }
 
 .descriptionGeneral {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     font-size: 1.5rem;
     text-align: center;
 }
 
-.container, .medicinesGeneralContainer {
+.container,
+.medicinesGeneralContainer {
     margin: 2rem;
 }
 
-.reportGeneral, .titleClients {
+.reportGeneral,
+.titleClients,
+.titleCreatePet,
+.titlePetss {
     margin-bottom: 1rem;
 }
 
-.btn-reportGeneral {
-    width: 10rem;
-    height: 3rem;
-    margin-bottom: 1rem;
+/* ESTILOS GENERALES EN BOTONES */
+#btn_create_client,
+#btn_create_medicing,
+.btn_create_pet,
+.btn-reportGeneral,
+.btn_update_save,
+.btn_report_customer,
+.btn_eliminar_customer,
+.btn_actualizar_customer,
+.btn_actualizar_pet,
+.btn_eliminar_pet,
+.btn_update_save_pet,
+.btn_quitar,
+.btn_actualizar_medicineg,
+.btn_eliminar_medicineg,
+.btn_update_save_medicine {
     border-width: 0;
     border-radius: 8px;
     color: #ffffff;
-	background-color: #461ef7;
-    font-size: 1rem;
-    text-decoration:none;
+    text-decoration: none;
     cursor: pointer;
 }
 
-.btn-reportGeneral:hover {
-	background-color: #7356f5;
-}
-
-.btn-reportGeneral:active {
+#btn_create_client:active,
+#btn_create_medicing:active,
+.btn_create_pet:active,
+.btn-reportGeneral:active,
+.btn_update_save:active,
+.btn_report_customer:active,
+.btn_eliminar_customer:active,
+.btn_actualizar_customer:active,
+.btn_actualizar_pet:active,
+.btn_eliminar_pet:active,
+.btn_update_save_pet:active,
+.btn_quitar:active,
+.btn_actualizar_medicineg:active,
+.btn_eliminar_medicineg:active,
+.btn_update_save_medicine:active {
     position: relative;
-	top: 1px;
+    top: 1px;
 }
 
-#createClient {
+/** BUTTON DE INFORME GENERAL */
+.btn-reportGeneral {
+    width: 10rem;
+    height: 3rem;
+    margin-bottom: 2rem;
+    background-color: #461ef7;
+    font-size: 1rem;
+}
+
+.btn-reportGeneral:hover {
+    background-color: #7356f5;
+}
+
+/** FORMULARIO DE CREAR CLIENTE Y CREAR MEDICINA */
+#createClient,
+#CreateMedicine {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -80,47 +126,241 @@
 }
 
 .form__field:focus {
-    padding-bottom: 6px;  
+    padding-bottom: 6px;
     font-weight: 600;
     border-width: 3px;
     border-image: linear-gradient(to right, #11998e, #38ef7d);
     border-image-slice: 1;
 }
 
-#btn_create_client {
+/** BUTTONS DE CREAR */
+#btn_create_client,
+#btn_create_medicing,
+.btn_create_pet {
     display: block;
     width: 10rem;
     height: 3rem;
     margin: auto;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     margin-top: 1.5rem;
-    border-width: 0;
-    border-radius: 8px;
-    color: #ffffff;
-	background-color: #f81f84;
+    background-color: #00722e;
     font-size: 1rem;
-    text-decoration:none;
-    cursor: pointer;
 }
 
-#btn_create_client:hover {
+#btn_create_client:hover,
+#btn_create_medicing:hover,
+.btn_create_pet:hover {
+    background-color: #1b723e;
+}
+
+/** BUTTONS DE UPDATE */
+.btn_update_save,
+.btn_update_save_pet,
+.btn_update_save_medicine {
+    display: block;
+    width: 10rem;
+    height: 3rem;
+    margin: auto;
+    margin-bottom: 2rem;
+    margin-top: 1.5rem;
+    background-color: #f81f84;
+    font-size: 1rem;
+}
+
+.btn_update_save:hover,
+.btn_update_save_pet:hover,
+.btn_update_save_medicine:hover {
     background-color: #f1559e;
 }
 
-#btn_create_client:active {
-    position: relative;
-	top: 1px;
-}
-
-#render_clients {
+/** RENDERS DE TODO EL CRUD */
+#render_clients,
+#render_pets,
+#render_medicines,
+#medicinesGeneral {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 }
 
+#render_clients section,
+#render_pets section,
+#render_medicines section,
+#medicinesGeneral section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 15rem;
+    margin: 0 1rem 1rem 0;
+    padding: 1rem;
+    background-color: #eeeeee;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+#render_clients section:hover,
+#render_pets section:hover,
+#render_medicines section:hover,
+#medicinesGeneral section:hover {
+    position: relative;
+    top: 5px;
+}
+
+#render_clients section h2,
+#render_pets section h2,
+#render_medicines section h2,
+#medicinesGeneral section h2 {
+    text-align: center;
+    cursor: pointer;
+}
+
+#render_clients section p,
+#render_pets section p,
+#render_medicines section p,
+#medicinesGeneral section p {
+    text-align: center;
+}
+
 #render_clients section {
-    width: 25%;
-    height: 10rem;
+    height: 20rem;
+}
+
+#render_pets section {
+    height: 15rem;
+}
+
+#render_medicines section {
+    height: 15rem;
+}
+
+#medicinesGeneral section {
+    height: 15rem;
+}
+
+/** CONTENEDORES DE LOS BOTONES DE LAS CARDS */
+.container_btn_client,
+.container_btn_pet,
+.container_btn_medicine,
+.container_btn_medicinesGeneral {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/** BOTONES DE REPORTE, ELIMINAR Y ACTUALIZAR DE LAS CARDS */
+.btn_report_customer,
+.btn_eliminar_customer,
+.btn_actualizar_customer,
+.btn_actualizar_pet,
+.btn_eliminar_pet,
+.btn_quitar,
+.btn_actualizar_medicineg,
+.btn_eliminar_medicineg {
+    display: block;
+    width: 7rem;
+    height: 2rem;
+    margin-bottom: .5rem;
+    font-size: .8rem;
+}
+
+.btn_report_customer {
+    background-color: #1f52f8;
+}
+
+.btn_actualizar_customer,
+.btn_actualizar_pet,
+.btn_actualizar_medicineg {
+    background-color: #777777;
+}
+
+.btn_eliminar_customer,
+.btn_eliminar_pet,
+.btn_quitar,
+.btn_eliminar_medicineg {
+    background-color: #fd4050;
+}
+
+.btn_report_customer:hover {
+    background-color: #4770f8;
+}
+
+.btn_actualizar_customer:hover,
+.btn_actualizar_pet:hover,
+.btn_actualizar_medicineg:hover {
+    background-color: #a0a0a0;
+}
+
+.btn_eliminar_customer:hover,
+.btn_eliminar_pet:hover,
+.btn_quitar:hover,
+.btn_eliminar_medicineg:hover {
+    background-color: #f85f6c;
+}
+
+.containerUpdate,
+.containerUpdateMedicine {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.titleUpdateClient,
+.titleUpdatePet,
+.titleMedicine {
+    width: 100%;
+    margin: 1rem 0 1rem 0;
+}
+
+.titleCreatePet {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.containerCreatePet {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#checkbox_medicines,
+#update_checkbox_medicines {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.titleCreatePetMedicaments {
+    width: 100%;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+#checkbox_medicines label,
+#update_checkbox_medicines label {
+    margin-bottom: .5rem;
+}
+
+.titlePets {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.medicinesGeneralContainer h1 {
+    text-align: center;
+}
+
+.titleUpdateMedicine {
+    width: 100%;
+    margin: 1rem 0 1rem 0;
 }

@@ -8,15 +8,17 @@
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <title>Party Animal!</title>
 </head>
 
 <body>
-    <h1 class="titlePrincipal">🐱🐔🐖 ¡PARTY ANIMAL! 🐱🐔🐖</h1>
+    <h1 class="titlePrincipal">🐱🐔🐖 ¡PARTY ANIMAL! 🐖🐔🐱</h1>
     <p class="descriptionGeneral">Centro veterinario ubicado en la ciudad de Cartagena</p>
 
     <div class="container">
+
         <section class="reports">
             <h1 class="reportGeneral">📄 REPORTE GENERAL</h1>
             <button class="btn-reportGeneral">Generar reporte</button>
@@ -24,7 +26,7 @@
         </section>
 
         <section class="clients">
-            <h1 class="titleClients">👥 CLIENTES</h1>
+            <h1 class="titleClients">➕ CREAR CLIENTE</h1>
             <div id="createClient">
                 <div class="form__group">
                     <input type="text" class="form__field" placeholder="Cédula" name="Cedula" id='Cedula' required />
@@ -33,46 +35,62 @@
                     <input type="text" class="form__field" placeholder="Nombres" name="Nombres" id='Nombres' required />
                 </div>
                 <div class="form__group">
-                    <input type="text" class="form__field" placeholder="Apellidos" name="Apellidos" id='Apellidos' required />
+                    <input type="text" class="form__field" placeholder="Apellidos" name="Apellidos" id='Apellidos'
+                        required />
                 </div>
                 <div class="form__group">
-                    <input type="text" class="form__field" placeholder="Dirección" name="Direccion" id='Direccion' required />
+                    <input type="text" class="form__field" placeholder="Dirección" name="Direccion" id='Direccion'
+                        required />
                 </div>
                 <div class="form__group">
-                    <input type="text" class="form__field" placeholder="Teléfono" name="Telefono" id='Telefono' required />
+                    <input type="text" class="form__field" placeholder="Teléfono" name="Telefono" id='Telefono'
+                        required />
                 </div>
             </div>
+            <button id="btn_create_client">Crear</button>
 
-            <button id="btn_create_client">💾 Crear</button>
-
+            <h1 class="titleClients">👥 CLIENTES</h1>
             <div id="render_clients"></div>
             <div id="update_form_customer"></div>
         </section>
 
         <section class="pets">
-            <h1>🐾 MASCOTAS</h1>
             <div class="CreatePet"></div>
             <div id="render_pets"></div>
             <div id="update_form_pet"></div>
         </section>
 
         <section class="medicines">
-            <h1>💊 MEDICAMENTOS ASIGNADOS</h1>
             <div id="render_medicines"></div>
         </section>
     </div>
-    <section id="ReportClient" ></section>
+
+    <section id="ReportClient"></section>
+
     <hr>
+
     <div class="medicinesGeneralContainer">
         <h1>LISTA DE MEDICAMENTOS EN GENERAL</h1>
+
         <div id="CreateMedicine">
-            <input type="text" id="Id" placeholder="Id" />
-            <input type="text" id="Nombre" placeholder="Nombre" />
-            <input type="text" id="Descripcion" placeholder="Descripción" />
-            <input type="text" id="Dosis" placeholder="Dosis" />
-            <button id="btn_create_medicineg">💾 Crear</button>
+            <div class="form__group">
+                <input type="text" class="form__field" placeholder="Id" name="Id" id='IdMedicine' required />
+            </div>
+            <div class="form__group">
+                <input type="text" class="form__field" placeholder="Nombre" name="Nombre" id='NombreMedicine'
+                    required />
+            </div>
+            <div class="form__group">
+                <input type="text" class="form__field" placeholder="Descripción" name="Descripcion"
+                    id='DescripcionMedicine' required />
+            </div>
+            <div class="form__group">
+                <input type="text" class="form__field" placeholder="Dosis" name="Dosis" id='DosisMedicine' required />
+            </div>
         </div>
-        <section id="medicinesGeneral"></section>
+        <button id="btn_create_medicing">Crear</button>
+
+        <div id="medicinesGeneral"></div>
         <div id="update_form_medicine"></div>
     </div>
 
