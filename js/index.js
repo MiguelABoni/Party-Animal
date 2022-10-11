@@ -234,25 +234,28 @@ function RenderMedicinesGeneral() {
             return res.json();
         })
         .then((data) => {
+            if (data.result == undefined) {
+                MedicinesGeneral.innerHTML += `<h3 class="noMedicinesGeneral">NO HAY MEDICINAS CREADAS</h3>`
+            } else {
+                data.result.map((item) => {
 
-            data.result.map((item) => {
+                    let Element = document.createElement('section');
 
-                let Element = document.createElement('section');
+                    Element.innerHTML = `
+                    <h2 id="${item._id}" class="MedicineName">${item.Nombre} </h2>
+                    <p>Descripción: ${item.Descripcion}</p>
+                    <p>Dosis: ${item.Dosis}</p>
+                    <div class="container_btn_medicinesGeneral">
+                        <button id="${item._id}" class="btn_actualizar_medicineg"> 🖋️ Actualizar</button>
+                        <button id="${item._id}" class="btn_eliminar_medicineg"> 🗑️ Eliminar</button>
+                    </div>
+                    `
 
-                Element.innerHTML = `
-                <h2 id="${item._id}" class="MedicineName">${item.Nombre} </h2>
-                <p>Descripción: ${item.Descripcion}</p>
-                <p>Dosis: ${item.Dosis}</p>
-                <div class="container_btn_medicinesGeneral">
-                    <button id="${item._id}" class="btn_actualizar_medicineg"> 🖋️ Actualizar</button>
-                    <button id="${item._id}" class="btn_eliminar_medicineg"> 🗑️ Eliminar</button>
-                </div>
-                `
-
-                MedicinesGeneral.append(Element);
-                AddClickNames('.btn_actualizar_medicineg', UpdateMedicine);
-                AddClickNames('.btn_eliminar_medicineg', DeleteMedicine);
-            })
+                    MedicinesGeneral.append(Element);
+                    AddClickNames('.btn_actualizar_medicineg', UpdateMedicine);
+                    AddClickNames('.btn_eliminar_medicineg', DeleteMedicine);
+                })
+            }
         })
 }
 
